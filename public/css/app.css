@@ -1,0 +1,33 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #EAEBEB;
+}
+
+header{
+    height: 30px;
+    line-height: 30px;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header h1{
+    font-size: 16px;  
+}
+
+header, footer {
+    flex-shrink: 0;
+    background-color: #BFC0C0;
+}
+
+main {
+    flex-grow: 1; 
+    padding: 20px;
+}

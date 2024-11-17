@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Devices extends Model
+class Device extends Model
 {
     use HasFactory;
 
@@ -28,6 +28,6 @@ class Devices extends Model
 
     public function getDevice($id)
     {
-        return $this->find($id); 
+        return $this->find($id);
     }
 }

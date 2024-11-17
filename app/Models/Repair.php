@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Repairs extends Model
+class Repair extends Model
 {
     use HasFactory;
 
@@ -23,6 +23,6 @@ class Repairs extends Model
 
     public function getRepair($id)
     {
-        return $this->find($id); 
+        return $this->find($id);
     }
 }

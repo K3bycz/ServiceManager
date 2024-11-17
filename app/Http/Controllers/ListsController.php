@@ -2,39 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Clients;
-use App\Models\Devices;
-use App\Models\Repairs;
+use App\Models\Client;
+use App\Models\Device;
+use App\Models\Repair;
 
 class ListsController extends Controller
 {
-    public function showClients()
+    public function showList(string $type)
     {
-        $clients = Clients::all();
+        $data = match ($type) {
+            'clients' => ['title' => 'Lista klientów', 'items' => Client::all()],
+            'devices' => ['title' => 'Lista sprzętów', 'items' => Device::all()],
+            'repairs' => ['title' => 'Lista napraw', 'items' => Repair::all()],
+            default => abort(404, 'Nieznany typ listy'),
+        };
 
-        return view('list', [
-            'title' => 'Lista klientów',
-            'items' => $clients
-        ]);
-    }
-
-    public function showDevices()
-    {
-        $devices = Devices::all();
-
-        return view('list', [
-            'title' => 'Lista sprzętów',
-            'items' => $devices
-        ]);
-    }
-
-    public function showRepairs()
-    {
-        $repairs = Repairs::all();
-
-        return view('list', [
-            'title' => 'Lista napraw',
-            'items' => $repairs
-        ]);
+        return view('list', $data);
     }
 }
