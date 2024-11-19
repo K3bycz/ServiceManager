@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link href="{{ asset('css/list.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     @if($data->isEmpty())
         <p class="text-left">Brak danych do wyświetlenia</p>
@@ -17,16 +21,19 @@
                             <th>Imię</th>
                             <th>Nazwisko</th>
                             <th>Numer telefonu</th>
+                            <th class="actions-column">Akcje</th>
                         @elseif($data[0] instanceof App\Models\Device)
-                            <th>Kategoria</th>
                             <th>Producent</th>
                             <th>Model</th>
+                            <th>Kategoria</th>
                             <th>Numer seryjny</th>
+                            <th class="actions-column">Akcje</th>
                         @elseif($data[0] instanceof App\Models\Device)
                             <th>Tytuł Naprawy</th>
                             <th>Opis Naprawy</th>
                             <th>Profits</th>
                             <th>Koszty</th>
+                            <th class="actions-column">Akcje</th>
                         @endif
                     </tr>
                 </thead>
@@ -37,16 +44,19 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->surname }}</td>
                                 <td>{{ $item->phoneNumber }}</td>
+                                <td><i class="fa fa-pencil icon-square"></i></td>
                             @elseif($item instanceof App\Models\Device)
-                                <td>{{ $item->category }}</td>
                                 <td>{{ $item->manufacturer }}</td>
                                 <td>{{ $item->model }}</td>
+                                <td>{{ $item->category }}</td>
                                 <td>{{ $item->serialNumber }}</td>
+                                <td><i class="fa fa-pencil icon-square"></i></td>
                             @elseif($item instanceof App\Models\Repair)
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>{{ $item->profits }} PLN</td>
                                 <td>{{ $item->costs }} PLN</td>
+                                <td><i class="fa fa-pencil icon-square"></i></td>
                             @endif
                         </tr>
                     @endforeach

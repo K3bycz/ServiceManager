@@ -1,0 +1,17 @@
+.icon-square {
+    display: inline-block;
+    width: 25px;   
+    height: 25px;  
+    background-color: #e7008a;
+    color: white;
+    border-radius: 5px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.actions-column {
+    width: 1%;
+    white-space: nowrap;
+    text-align: center; 
+}

@@ -1,22 +1,50 @@
 <ul class="m-0 p-0">
+    <li class="d-flex align-items-center justify-content-center p-2">
+        <img src="{{ asset('images/profile.png') }}" alt="Profile" class="profile-img ">
+    </li>
+    <li class="d-flex align-items-center justify-content-center p-2">
+        <a href="#" class="align-items-center text-decoration-none text-dark" id="userMenuToggle">
+            K3bycz
+            <span>
+                <i class="fa fa-caret-down" id="toggleIcon"></i>
+            </span>
+        </a>
+    </li>
+    <li class="d-flex align-items-center justify-content-center">
+        <ul id="userDropdown" class="dropdown-list">
+            <li>
+                <a href="#" class="text-decoration-none p-2 menu-option">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> Dane użytkownika
+                </a>
+            </li>
+            <li>
+                <a href="#" class="text-decoration-none p-2 menu-option">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> Wyloguj
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <h6> Pulpity </h6>
     <li class="p-2">
-        <a href="#" class="align-items-center text-decoration-none text-dark">
-            <span class="me-2"></span> Dashboard
+        <a href="#" class="align-items-center text-decoration-none menu-option">
+            <span class="ms-2"><i class="fa fa-home" aria-hidden="true"></i></span> Pulpit
+        </a>
+    </li>
+    <h6> Listy </h6>
+    <li class="p-2">
+        <a href="/list/clients" class="align-items-center text-decoration-none menu-option">
+            <span class="ms-2"><i class="fa fa-id-card" aria-hidden="true"></i></span> Klienci
         </a>
     </li>
     <li class="p-2">
-        <a href="/list/clients" class="align-items-center text-decoration-none text-dark">
-            <span class="me-2"></span> Klienci
+        <a href="/list/devices" class="align-items-center text-decoration-none menu-option">
+            <span class="ms-2"><i class="fa fa-laptop" aria-hidden="true"></i></span> Urządzenia
         </a>
     </li>
     <li class="p-2">
-        <a href="/list/devices" class="align-items-center text-decoration-none text-dark">
-            <span class="me-2"></span> Urządzenia
-        </a>
-    </li>
-    <li class="p-2">
-        <a href="/list/repairs" class="align-items-center text-decoration-none text-dark">
-            <span class="me-2"></span> Naprawy
+        <a href="/list/repairs" class="align-items-center text-decoration-none menu-option">
+            <span class="ms-2"><i class="fa fa-gavel" aria-hidden="true"></i></span> Naprawy
         </a>
     </li>
 </ul>
