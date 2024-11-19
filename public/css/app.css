@@ -54,6 +54,15 @@ main {
     font-size:14px;
 }
 
+.menu-option{
+    color:#7a878e;
+}
+
+h6{
+    padding-left:30px;
+    padding-top:20px;
+}
+
 .content {
     padding: 20px;
     height: 100%;
@@ -69,4 +78,34 @@ span{
     top: 0;
     left: 0;
     z-index: -99;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 15px;
+}
+
+#userMenuToggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative; 
+}
+
+.dropdown-list {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: static;
+}
+
+.dropdown-list li a {
+    display: block;
+    padding: 5px 0; 
+    text-decoration: none;
+    transition: background-color 0.2s ease;
 }
