@@ -12,3 +12,6 @@ Route::get('/', function () {
 Route::get('/list/clients', [ClientsController::class, 'showList'])->name('clients.list');
 Route::get('/list/devices', [DevicesController::class, 'showList'])->name('devices.list');
 Route::get('/list/repairs', [RepairsController::class, 'showList'])->name('repairs.list');
+
+Route::get('client/create', [ClientsController::class, 'showCreateOrUpdateForm'])->name('clients.create');
+Route::get('client/{id}/edit', [ClientsController::class, 'showCreateOrUpdateForm'])->name('clients.edit');

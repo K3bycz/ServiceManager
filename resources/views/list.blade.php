@@ -10,13 +10,23 @@
     @else
         <div class="list-title text-dark">
             @if(isset($title) && isset($data))
-                <p style="font-size:18px; font-weight:bold; color:white">{{ $title }}</p>
+                <p style="font-size:25px; font-weight:bold; color:white">{{ $title }}</p>
             @endif
         </div>
-        <div class="table-container" style="height: 100%;">
+        <div class="table-container">
+            <div class="table-button">
+                @if($data[0] instanceof App\Models\Client)
+                    <a href="/client/create" class="btn btn-custom">Dodaj nowy</a>
+                @elseif($data[0] instanceof App\Models\Device)
+                    <a href="/device/create" class="btn btn-custom">Dodaj nowy</a>
+                @elseif($data[0] instanceof App\Models\Device)
+                    <a href="/repair/create" class="btn btn-custom">Dodaj nowy</a>
+                @endif
+            </div>
             <table class="table table-bordered table-striped w-100" style="background-color:white">
                 <thead>
                     <tr>
+                        
                         @if($data[0] instanceof App\Models\Client)
                             <th>Imię</th>
                             <th>Nazwisko</th>
@@ -44,19 +54,19 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->surname }}</td>
                                 <td>{{ $item->phoneNumber }}</td>
-                                <td><i class="fa fa-pencil icon-square"></i></td>
+                                <td><a href="{{ '/client/' . $item->id . '/edit' }}"><i class="fa fa-pencil icon-square"></i></a></td>
                             @elseif($item instanceof App\Models\Device)
                                 <td>{{ $item->manufacturer }}</td>
                                 <td>{{ $item->model }}</td>
                                 <td>{{ $item->category }}</td>
                                 <td>{{ $item->serialNumber }}</td>
-                                <td><i class="fa fa-pencil icon-square"></i></td>
+                                <td><a href="{{ '/device/' . $item->id . '/edit' }}"><i class="fa fa-pencil icon-square"></i></a></td>
                             @elseif($item instanceof App\Models\Repair)
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>{{ $item->profits }} PLN</td>
                                 <td>{{ $item->costs }} PLN</td>
-                                <td><i class="fa fa-pencil icon-square"></i></td>
+                                <td><a href="{{ '/repair/' . $item->id . '/edit' }}"><i class="fa fa-pencil icon-square"></i></a></td>
                             @endif
                         </tr>
                     @endforeach
