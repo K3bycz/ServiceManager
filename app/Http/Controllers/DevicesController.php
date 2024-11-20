@@ -13,4 +13,16 @@ class DevicesController extends Controller
 
         return view('list', ['data' => $data, 'title' => $title]);
     }
+
+    public function showCreateOrUpdateForm($id = null)
+    {
+        $device = null;
+        $title = "Dane Klienta";
+
+        if ($id) {
+            $device = Device::findOrFail($id);
+        }
+        
+        return view('devices.createOrUpdate', ['device' => $device, 'title' => $title]);
+    }
 }
