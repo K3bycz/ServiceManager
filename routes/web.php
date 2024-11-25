@@ -15,3 +15,7 @@ Route::get('/list/repairs', [RepairsController::class, 'showList'])->name('repai
 
 Route::get('client/create', [ClientsController::class, 'showCreateOrUpdateForm'])->name('clients.create');
 Route::get('client/{id}/edit', [ClientsController::class, 'showCreateOrUpdateForm'])->name('clients.edit');
+Route::post('/clients/store', [ClientsController::class, 'store'])->name('clients.store');
+
+Route::get('device/create', [DevicesController::class, 'showCreateOrUpdateForm'])->name('devices.create');
+Route::get('device/{id}/edit', [DevicesController::class, 'showCreateOrUpdateForm'])->name('devices.edit');

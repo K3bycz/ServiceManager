@@ -23,13 +23,9 @@
     border-radius: 15px;
 }
 
-.btn-custom{
-    color:white !important;
-    background-color: #e7008a !important;
-    border-color: #e7008a !important;
-    border-radius: 15px;
-    margin-bottom:15px;
-    font-size:14px !important;
+.no-style-link{
+    color: inherit !important; 
+    text-decoration: none !important;
 }
 
 .table-button a:hover{

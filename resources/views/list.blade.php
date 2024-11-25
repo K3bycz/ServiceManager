@@ -54,19 +54,19 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->surname }}</td>
                                 <td>{{ $item->phoneNumber }}</td>
-                                <td><a href="{{ '/client/' . $item->id . '/edit' }}"><i class="fa fa-pencil icon-square"></i></a></td>
+                                <td><a href="{{ '/client/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                             @elseif($item instanceof App\Models\Device)
                                 <td>{{ $item->manufacturer }}</td>
                                 <td>{{ $item->model }}</td>
                                 <td>{{ $item->category }}</td>
                                 <td>{{ $item->serialNumber }}</td>
-                                <td><a href="{{ '/device/' . $item->id . '/edit' }}"><i class="fa fa-pencil icon-square"></i></a></td>
+                                <td><a href="{{ '/device/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                             @elseif($item instanceof App\Models\Repair)
                                 <td>{{ $item->title }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>{{ $item->profits }} PLN</td>
                                 <td>{{ $item->costs }} PLN</td>
-                                <td><a href="{{ '/repair/' . $item->id . '/edit' }}"><i class="fa fa-pencil icon-square"></i></a></td>
+                                <td><a href="{{ '/repair/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                             @endif
                         </tr>
                     @endforeach
