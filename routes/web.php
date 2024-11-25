@@ -9,6 +9,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/clients/search', [ClientsController::class, 'search'])->name('clients.search');
+
 Route::get('/list/clients', [ClientsController::class, 'showList'])->name('clients.list');
 Route::get('/list/devices', [DevicesController::class, 'showList'])->name('devices.list');
 Route::get('/list/repairs', [RepairsController::class, 'showList'])->name('repairs.list');
@@ -19,3 +21,4 @@ Route::post('/clients/store', [ClientsController::class, 'store'])->name('client
 
 Route::get('device/create', [DevicesController::class, 'showCreateOrUpdateForm'])->name('devices.create');
 Route::get('device/{id}/edit', [DevicesController::class, 'showCreateOrUpdateForm'])->name('devices.edit');
+Route::post('/devices/store', [DevicesController::class, 'store'])->name('devices.store');

@@ -9,11 +9,29 @@ class ClientsController extends Controller
 {
     public function showList()
     {
-        $data = Client::all();
+        $data = Client::orderBy('id', 'desc')->paginate(15);
         $title = "Klienci";
+        $type = "client";
         
-        return view('list', ['data' => $data, 'title' => $title]);
+        return view('list', ['data' => $data, 'title' => $title, 'type' => $type]);
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('query', '');
+        
+        if ($query) {
+            $clients = Client::where('name', 'ILIKE', "%$query%")
+                            ->orWhere('surname', 'ILIKE', "%$query%")
+                            ->limit(10)
+                            ->get();
+
+            return response()->json($clients);
+        } else {
+            return response()->json([]);
+        }
+    }
+
 
     public function showCreateOrUpdateForm($id = null)
     {

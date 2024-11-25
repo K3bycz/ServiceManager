@@ -31,3 +31,18 @@
 .table-button a:hover{
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
+
+.pagination .page-item.active .page-link {
+    background-color: #e7008a;
+    border-color: #e7008a;
+}
+
+.pagination .page-link {
+    color: #000;
+    border-color: #ddd;
+}
+
+.pagination .page-item:hover .page-link {
+    background-color: #f0f0f0;
+    border-color: #ddd;
+}

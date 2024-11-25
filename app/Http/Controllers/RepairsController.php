@@ -10,7 +10,8 @@ class RepairsController extends Controller
     {
         $data = Repair::all();
         $title = "Naprawy";
+        $type = "repair";
 
-        return view('list', ['data' => $data, 'title' => $title]);
+        return view('list', ['data' => $data, 'title' => $title, 'type' => $type]);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
+use App\Models\Client;
+use Illuminate\Http\Request;
 
 class DevicesController extends Controller
 {
@@ -10,8 +12,9 @@ class DevicesController extends Controller
     {
         $data = Device::all();
         $title = "Urządzenia";
+        $type = "device";
 
-        return view('list', ['data' => $data, 'title' => $title]);
+        return view('list', ['data' => $data, 'title' => $title, 'type' => $type]);
     }
 
     public function showCreateOrUpdateForm($id = null)
@@ -24,5 +27,10 @@ class DevicesController extends Controller
         }
         
         return view('devices.createOrUpdate', ['device' => $device, 'title' => $title]);
+    }
+
+    public function store(Request $request)
+    {
+        dd($request);
     }
 }
