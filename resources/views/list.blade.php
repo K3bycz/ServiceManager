@@ -11,7 +11,7 @@
             @endif
         </div>
         <div class="table-container">
-            <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex justify-content-between mb-3">
                 <div class="table-button">
                     @if($type == "client")
                         <a href="/client/create" class="btn btn-custom">Dodaj nowy</a>
@@ -20,7 +20,7 @@
                     @elseif($type == "repair")
                         <a href="/repair/create" class="btn btn-custom">Dodaj nowy</a>
                     @endif
-            </div>
+                </div>
                 @if(isset($data) && method_exists($data, 'links'))
                     <div class="pagination-container">
                         {{ $data->links('vendor.pagination.bootstrap-5') }}                    
@@ -41,6 +41,7 @@
                             @elseif($data[0] instanceof App\Models\Device)
                                 <th>Producent</th>
                                 <th>Model</th>
+                                <th>Klient</th>
                                 <th>Kategoria</th>
                                 <th>Numer seryjny</th>
                                 <th class="actions-column">Akcje</th>
@@ -64,6 +65,7 @@
                                 @elseif($item instanceof App\Models\Device)
                                     <td>{{ $item->manufacturer }}</td>
                                     <td>{{ $item->model }}</td>
+                                    <td>{{ $item->client ? $item->client->name . ' ' . $item->client->surname . ' (' . $item->client->phoneNumber . ')': 'Brak właściciela' }}</td>
                                     <td>{{ $item->category }}</td>
                                     <td>{{ $item->serialNumber }}</td>
                                     <td><a href="{{ '/device/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>

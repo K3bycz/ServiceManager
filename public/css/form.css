@@ -22,6 +22,7 @@
     overflow-y: auto;
     z-index: 1000;
     border: 1px solid #ccc;
+    position:absolute;
     border-bottom: none;
     padding-left:0px;
     margin-top: 2px;

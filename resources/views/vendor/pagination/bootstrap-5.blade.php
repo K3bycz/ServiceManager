@@ -35,13 +35,12 @@
         @endif
     </ul>
 
-    <!-- Komunikat o wynikach -->
-    <div class="pagination-summary">
+    <div class="pagination-summary text-center">
         @php
             $start = $paginator->firstItem();
             $end = $paginator->lastItem();
             $total = $paginator->total();
         @endphp
-        <p>Pozycje od <strong>{{ $start }}</strong> do <strong>{{ $end }}</strong> z <strong>{{ $total }}</strong> wyników</p>
+        <p style="font-size:13px;">Pozycje od <strong>{{ $start }}</strong> do <strong>{{ $end }}</strong> z <strong>{{ $total }}</strong> wyników</p>
     </div>
 </nav>
