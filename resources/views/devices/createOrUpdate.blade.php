@@ -7,14 +7,22 @@
 @section('content')
     @if(isset($title) && isset($device))
         <p style="font-size:25px; font-weight:bold; color:white">{{ $title }}</p>
+        <div class="menu-form-container pink-hover">
+            <a href="{{ '/device/' . $device->id . '/edit' }}" class="text-decoration-none menu-option">Dane sprzętu</a>
+            <p>Naprawy</p>
+        </div>
     @endif
-    <div class="form-container">
+    <div class="form-container" style="border-radius: 0 0 10px 10px;">
+        
         <form class="row" method="POST" action="{{ route('devices.store') }}">
             @csrf
             <div class="form-group col-12 position-relative">
                 <label for="owner">Klient<span style="color:red;">*</span></label>
-                <input type="text" class="form-control" name="owner" id="owner" value="" autocomplete="off">
-                <input type="hidden" name="owner_id" id="owner_id">
+                <input type="text" class="form-control" name="owner" id="owner" value="@if(isset($device->client)){{ $device->client->name }} {{ $device->client->surname }} ({{ $device->client->phoneNumber }})@else{{ '' }}@endif" autocomplete="off">
+                <input type="hidden" name="owner_id" id="owner_id" value ="{{ $device->owner ?? '' }}">
+                @if (isset($device->id))
+                    <input type="hidden" name="id" value="{{ $device->id }}">
+                @endif
                 <ul id="owner-suggestions" style="display: none;"></ul>
             </div>
             <div class="form-group col-6" style="margin-top:25px;">

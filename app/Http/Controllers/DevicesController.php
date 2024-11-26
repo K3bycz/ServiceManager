@@ -25,10 +25,10 @@ class DevicesController extends Controller
     public function showCreateOrUpdateForm($id = null)
     {
         $device = null;
-        $title = "Dane Klienta";
+        $title = "Dane Sprzętu";
 
         if ($id) {
-            $device = Device::findOrFail($id);
+            $device = Device::with('client')->findOrFail($id);        
         }
         
         return view('devices.createOrUpdate', ['device' => $device, 'title' => $title]);
@@ -48,8 +48,8 @@ class DevicesController extends Controller
         ]);
 
         if ($request->id) {
-            $client = Device::findOrFail($request->id);
-            $client->update($validatedData);
+            $device = Device::findOrFail($request->id);
+            $device->update($validatedData);
         } else {
             Device::create($validatedData);
         }

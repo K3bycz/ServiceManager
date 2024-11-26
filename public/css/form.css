@@ -4,6 +4,15 @@
     background-color:white;
     border-radius: 15px;
 }
+.menu-form-container{
+    display: flex;
+    background-color:white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: solid 1px #ccc;
+    padding:20px 20px 0px 20px;
+    gap: 20px;
+}
 
 .form-input{
     margin-bottom:25px !important;
