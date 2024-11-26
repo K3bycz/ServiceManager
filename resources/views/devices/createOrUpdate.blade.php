@@ -32,7 +32,17 @@
             </div>
             <div class="form-group col-6" style="margin-top:25px;">
                 <label for="manufacturer">Producent<span style="color:red; padding:0px;">*<span></label>
-                <input type="text" class="form-control form-input" name="manufacturer" id="manufacturer" value="{{ $device->manufacturer ?? '' }}">
+                <input list="manufacturers" class="form-control form-input" name="manufacturer" id="manufacturer" value="{{ $device->manufacturer ?? '' }}">
+                <datalist id="manufacturers">
+                    <option value="HP">
+                    <option value="Asus">
+                    <option value="Acer">
+                    <option value="Lenovo">
+                    <option value="Dell">
+                    <option value="Epson">
+                    <option value="Canon">
+                    <option value="Apple">
+                </datalist>
             </div>
             <div class="form-group col-6">
                 <label for="serialNumber">Numer seryjny</label>
