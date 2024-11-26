@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use App\Models\Client;
+use App\Models\Repair;
 use Illuminate\Http\Request;
 
 class DevicesController extends Controller
@@ -33,7 +34,7 @@ class DevicesController extends Controller
         
         return view('devices.createOrUpdate', ['device' => $device, 'title' => $title]);
     }
-
+    
     public function store(Request $request)
     {
         $request->merge(['owner' => $request->input('owner_id')]);
@@ -55,5 +56,21 @@ class DevicesController extends Controller
         }
 
         return redirect()->route('devices.list')->with('success', 'Urządzenie zostało zapisane.');
+    }
+
+    public function showRepairs($id)
+    {   
+
+        if ($id) {
+            $repairs = Repair::where('device', $id)->paginate(10);
+            $device = Device::with('client')->findOrFail($id); 
+        }
+
+        if ($device) {
+            $title = "Naprawy: " . $device->manufacturer . " " . $device->model;
+        } else {
+            $title = "Naprawy: Nieznane urządzenie";
+        }
+        return view('devices.repairList', ['repairs' => $repairs, 'device' => $device, 'title' => $title]);
     }
 }

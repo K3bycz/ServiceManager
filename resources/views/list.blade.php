@@ -18,7 +18,7 @@
                     @elseif($type == "device")
                         <a href="/device/create" class="btn btn-custom">Dodaj nowy</a>
                     @elseif($type == "repair")
-                        <a href="/repair/create" class="btn btn-custom">Dodaj nowy</a>
+                        <a href="#" class="btn btn-custom">Dodaj nowy</a>
                     @endif
                 </div>
                 @if(isset($data) && method_exists($data, 'links'))
@@ -29,7 +29,7 @@
             </div>
             <table class="table table-bordered table-striped w-100" style="background-color:white">
                 @if($data->isEmpty())
-                    <p class="text-left">Brak danych do wyświetlenia</p>
+                    <p class="text-center">Brak danych do wyświetlenia</p>
                 @else
                     <thead>
                         <tr>

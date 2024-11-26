@@ -9,7 +9,7 @@ class Repair extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['device', 'title', 'description', 'costs', 'profit'];
+    protected $fillable = ['device', 'title', 'description', 'costs', 'revenue', 'profit', 'date_received', 'date_released' ];
 
     public function device()
     {

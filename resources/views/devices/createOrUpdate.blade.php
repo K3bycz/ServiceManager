@@ -9,7 +9,7 @@
         <p style="font-size:25px; font-weight:bold; color:white">{{ $title }}</p>
         <div class="menu-form-container pink-hover">
             <a href="{{ '/device/' . $device->id . '/edit' }}" class="text-decoration-none menu-option">Dane sprzętu</a>
-            <p>Naprawy</p>
+            <a href="{{ '/device/' . $device->id . '/repairs' }}" class="text-decoration-none menu-option">Naprawy</a>
         </div>
     @endif
     <div class="form-container" style="border-radius: 0 0 10px 10px;">
