@@ -34,6 +34,23 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>
 
+@if(session('success'))
+    <script>
+        // Tworzenie powiadomienia
+        const notificationContainer = document.getElementById('notificationContainer');
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerText = '{{ session('success') }}';
+
+        // Dodanie powiadomienia do kontenera
+        notificationContainer.appendChild(notification);
+
+        // Usunięcie powiadomienia po 3.5 sekundach
+        setTimeout(() => {
+            notification.remove();
+        }, 3500);
+    </script>
+@endif
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const userMenuToggle = document.getElementById('userMenuToggle');

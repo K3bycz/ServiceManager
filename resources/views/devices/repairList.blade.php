@@ -44,10 +44,11 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->status }}</td>
-                            <td>data przyjęcia</td>
-                            <td>data wydania</td>
+                            <td>{{ $item->date_received }}</td>
+                            <td>{{ $item->date_released }}</td>
                             <td>{{ $item->title }}</td>
-                            <td><a href="{{ '/repair/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
+                            <td>{{ $item->revenue }}</td>
+                            <td><a href="{{ '/repairs/'. $item->device . '/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                         </tr>
                     @endforeach
                 </tbody>

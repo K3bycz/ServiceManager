@@ -52,10 +52,16 @@ class DevicesController extends Controller
             $device = Device::findOrFail($request->id);
             $device->update($validatedData);
         } else {
-            Device::create($validatedData);
+            $device = Device::create($validatedData);
         }
 
-        return redirect()->route('devices.list')->with('success', 'Urządzenie zostało zapisane.');
+        if ($request->action === 'save_and_close') {
+            return redirect()->route('devices.list')->with('success', 'Urządzenie zostało zapisane.');
+        }
+
+        return redirect()->route('devices.edit', [ 'id' => $device->id])
+            ->with('success', 'Urządzenie zostało zapisane.');
+        
     }
 
     public function showRepairs($id)

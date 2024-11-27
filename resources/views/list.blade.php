@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+        <div id="notificationContainer" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
         <div class="list-title text-dark">
             @if(isset($title) && isset($data))
                 <p style="font-size:25px; font-weight:bold; color:white">{{ $title }}</p>
@@ -18,7 +19,7 @@
                     @elseif($type == "device")
                         <a href="/device/create" class="btn btn-custom">Dodaj nowy</a>
                     @elseif($type == "repair")
-                        <a href="#" class="btn btn-custom">Dodaj nowy</a>
+                        <button id="notificationButton" class="btn btn-custom">Dodaj nowy</button>
                     @endif
                 </div>
                 @if(isset($data) && method_exists($data, 'links'))
@@ -45,11 +46,13 @@
                                 <th>Kategoria</th>
                                 <th>Numer seryjny</th>
                                 <th class="actions-column">Akcje</th>
-                            @elseif($data[0] instanceof App\Models\Device)
-                                <th>Tytuł Naprawy</th>
-                                <th>Opis Naprawy</th>
-                                <th>Profits</th>
-                                <th>Koszty</th>
+                            @elseif($data[0] instanceof App\Models\Repair)
+                                <th>Numer naprawy</th>
+                                <th>Status naprawy</th>
+                                <th>Data przyjęcia</th>
+                                <th>Data wydania</th>
+                                <th>Tytuł naprawy</th>
+                                <th>Przychód</th>
                                 <th class="actions-column">Akcje</th>
                             @endif
                         </tr>
@@ -70,11 +73,13 @@
                                     <td>{{ $item->serialNumber }}</td>
                                     <td><a href="{{ '/device/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                                 @elseif($item instanceof App\Models\Repair)
-                                    <td>{{ $item->title }}</td>
-                                    <td>{{ $item->description }}</td>
-                                    <td>{{ $item->profits }} PLN</td>
-                                    <td>{{ $item->costs }} PLN</td>
-                                    <td><a href="{{ '/repair/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
+                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $item->status }}</td>
+                                    <td>{{ $item->date_received }}</td>
+                                    <td>{{ $item->date_released}}</td>
+                                    <td>{{ $item->title}}</td>
+                                    <td>@if(isset($item->revenue)) {{ $item->revenue}} PLN @endif</td>
+                                    <td><a href="{{ '/repairs/'. $item->device . '/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                                 @endif
                             </tr>
                         @endforeach
@@ -83,4 +88,22 @@
             </table>
         </div>
   
+@endsection
+
+@section ('scripts')
+    <script>
+        document.getElementById('notificationButton').addEventListener('click', function () {
+            const notificationContainer = document.getElementById('notificationContainer');
+
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerText = 'Dodawaj naprawy poprzez zakładkę ,,Naprawy" z menu edycji urządzenia!';
+
+            notificationContainer.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3500);
+        });
+    </script>
 @endsection

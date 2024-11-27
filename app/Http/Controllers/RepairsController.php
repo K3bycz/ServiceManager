@@ -11,7 +11,7 @@ class RepairsController extends Controller
 {
     public function showList()
     {
-        $data = Repair::paginate(15);
+        $data = Repair::orderBy('id', 'asc')->paginate(15);
         $title = "Naprawy";
         $type = "repair";
 
@@ -33,7 +33,7 @@ class RepairsController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {  
         $validatedData = $request->validate([
             'device' => 'required|exists:devices,id',
             'status' => 'required|string',
@@ -45,14 +45,22 @@ class RepairsController extends Controller
             'revenue' => 'nullable|numeric',
         ]);
 
+        $costs = $validatedData['costs'] ?? 0;
+        $revenue = $validatedData['revenue'] ?? 0;
+        $validatedData['profit'] = $revenue - $costs;
+
         if ($request->id) {
             $repair = Repair::findOrFail($request->id);
             $repair->update($validatedData);
         } else {
-            Repair::create($validatedData);
+            $repair = Repair::create($validatedData);
         }
 
-        return redirect()->route('repairs.list')->with('success', 'Naprawa została zapisana.');
+        if ($request->action === 'save_and_close') {
+            return redirect()->route('repairs.list')->with('success', 'Naprawa została zapisana.');
+        }
 
+        return redirect()->route('repairs.edit', ['deviceId' => $request->device, 'id' => $repair->id])
+            ->with('success', 'Naprawa została zapisana.');
     }
 }

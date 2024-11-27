@@ -32,7 +32,6 @@ class ClientsController extends Controller
         }
     }
 
-
     public function showCreateOrUpdateForm($id = null)
     {
         $client = null;
@@ -57,9 +56,14 @@ class ClientsController extends Controller
             $client = Client::findOrFail($request->id);
             $client->update($validatedData);
         } else {
-            Client::create($validatedData);
+            $client = Client::create($validatedData);
         }
 
-        return redirect()->route('clients.list')->with('success', 'Dane klienta zostały zapisane.');
+        if ($request->action === 'save_and_close') {
+            return redirect()->route('clients.list')->with('success', 'Dane klienta zostały zapisane.');
+        }
+
+        return redirect()->route('clients.edit', [ 'id' => $client->id])
+            ->with('success', 'Dane klienta zostały zapisane.');
     }
 }
