@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-        <div id="notificationContainer" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
+        <div id="notificationContainer"></div>
         <div class="list-title text-dark">
             @if(isset($title) && isset($data))
                 <p style="font-size:25px; font-weight:bold; color:white">{{ $title }}</p>
@@ -28,7 +28,7 @@
                     </div>
                 @endif
             </div>
-            <table class="table table-bordered table-striped w-100" style="background-color:white">
+            <table class="table table-bordered table-striped w-100 responsive-table" style="background-color:white">
                 @if($data->isEmpty())
                     <p class="text-center">Brak danych do wyświetlenia</p>
                 @else
@@ -64,14 +64,14 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->surname }}</td>
                                     <td>{{ $item->phoneNumber }}</td>
-                                    <td><a href="{{ '/client/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
+                                    <td class="editButtonRow"><a href="{{ '/client/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                                 @elseif($item instanceof App\Models\Device)
                                     <td>{{ $item->manufacturer }}</td>
                                     <td>{{ $item->model }}</td>
                                     <td>{{ $item->client ? $item->client->name . ' ' . $item->client->surname . ' (' . $item->client->phoneNumber . ')': 'Brak właściciela' }}</td>
                                     <td>{{ $item->category }}</td>
                                     <td>{{ $item->serialNumber }}</td>
-                                    <td><a href="{{ '/device/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
+                                    <td class="editButtonRow"><a href="{{ '/device/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                                 @elseif($item instanceof App\Models\Repair)
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->status }}</td>
@@ -79,7 +79,7 @@
                                     <td>{{ $item->date_released}}</td>
                                     <td>{{ $item->title}}</td>
                                     <td>@if(isset($item->revenue)) {{ $item->revenue}} PLN @endif</td>
-                                    <td><a href="{{ '/repairs/'. $item->device . '/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
+                                    <td class="editButtonRow"><a href="{{ '/repairs/'. $item->device . '/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                                 @endif
                             </tr>
                         @endforeach

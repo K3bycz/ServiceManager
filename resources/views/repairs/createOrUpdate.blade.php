@@ -13,14 +13,14 @@
     @endif
     <div class="info-form-container">
         <div class="row">
-            <div class="col-4 mb-3">
+            <div class="col-6 col-md-4 mb-3">
                 <p style="margin-bottom:10px">Klient:</p>
                 <h3 class="pink-hover">
                 <a href="{{ url('client/' . $client->id . '/edit') }}" style="text-decoration: none; color:black;">{{ $client->name }} {{ $client->surname }}</a>
                 </h3>
                 <p class="m-0" style="color:grey">Tel: {{$client->phoneNumber}}</p>
             </div>
-            <div class="col-4 mb-3">
+            <div class="col-6 col-md-4 mb-3">
                 <p style="margin-bottom:10px">Sprzęt:</p>
                 <h3 class="pink-hover"> 
                 <a href="{{ url('device/' . $device->id . '/edit') }}" style="text-decoration: none; color:black;">{{$device->category}}</a>
@@ -34,13 +34,13 @@
     <div class="form-container" style="border-radius: 0 0 10px 10px;">
         <form class="row" method="POST" action="{{ route('repairs.store') }}">
             @csrf
-            <div class="col-3 form-group">
+            <div class="col-6 col-md-3 form-group">
                 <label for="number">Numer naprawy</label>
                 <input type="text" class="form-control form-input" name="number" id="number" value="@if(isset($repair->id)){{ $repair->id }}@endif" disabled>
             </div>
             <input type="hidden" name="device" id="device" value ="{{ $device->id }}">
             <input type="hidden" name="id" id="id" value ="@if(isset($repair->id)){{ $repair->id }}@endif">
-            <div class="col-3 form-group">
+            <div class="col-6 col-md-3 form-group">
                 <label for="status">Status naprawy</label>
                 <select id="status" name="status" class="form-control" required>
                     <option value="Nowa" @if(isset($repair) && $repair->status == 'Nowa') selected @endif>Nowa</option>
@@ -51,11 +51,11 @@
                     <option value="Oczekuje na klienta" @if(isset($repair) && $repair->status == 'Oczekuje na klienta') selected @endif>Oczekuje na klienta</option>
                 </select>
             </div>
-            <div class="col-3 form-group">
+            <div class="col-12 col-md-3 form-group">
                 <label for="date_received">Data przyjęcia</label>
                 <input type="date" class="form-control form-input" name="date_received" id="date_received" value="@if(isset($repair->date_received)){{ $repair->date_received }}@endif" required>
             </div>
-            <div class="col-3 form-group">
+            <div class="col-12 col-md-3 form-group">
                 <label for="date_released">Data wydania</label>
                 <input type="date" class="form-control form-input" name="date_released" id="date_released" value="@if(isset($repair->date_released)){{ $repair->date_released }}@endif">
             </div>
@@ -67,15 +67,15 @@
                 <label for="description">Opis naprawy</label>
                 <textarea name="description" id="description" class="form-control form-input">@if(isset($repair->description)){{ $repair->description }}@endif</textarea>
             </div>
-            <div class="col-4 form-group">
+            <div class="col-6 col-md-4 form-group">
                 <label for="costs">Koszta</label>
                 <input type="text" class="form-control form-input" name="costs" id="costs" value="@if(isset($repair->costs)){{ $repair->costs }}@endif">
             </div>
-            <div class="col-4 form-group">
+            <div class="col-6 col-md-4 form-group">
                 <label for="revenue">Przychody</label>
                 <input type="text" class="form-control form-input" name="revenue" id="revenue" value="@if(isset($repair->revenue)){{ $repair->revenue }}@endif">
             </div>
-            <div class="col-4 form-group">
+            <div class="col-12 col-md-4 form-group">
                 <label for="profit">Zarobek</label>
                 <input type="text" class="form-control form-input" name="profit" id="profit" value="@if(isset($repair->profit)){{ $repair->profit }}@endif" disabled>
             </div>

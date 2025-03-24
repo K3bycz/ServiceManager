@@ -56,3 +56,15 @@
 #owner-suggestions li:hover {
     background-color: #f0f0f0;
 }
+
+@media only screen and (max-width: 767px) {
+    .form-container{
+        padding:10px 10px 10px 10px;
+    }
+    .info-form-container{
+        padding:10px 10px 0px 10px;
+    }
+    .menu-form-container{
+        padding:10px 10px 0px 10px;
+    }
+}
