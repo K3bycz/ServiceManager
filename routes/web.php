@@ -11,6 +11,7 @@ Route::get('/', function () {
 });
 
 Route::get('/', [DashboardsController::class, 'showDashboard'])->name('dashboard');
+Route::get('/stats', [DashboardsController::class, 'showStatistics'])->name('stats');
 
 Route::get('/clients/search', [ClientsController::class, 'search'])->name('clients.search');
 

@@ -1,8 +1,17 @@
-.repairs-container{
+.current-repairs-container{
     position: relative;
-    padding:20px 25px 40px 25px; 
+    padding:20px 25px 25px 25px !important; 
+    margin-bottom:20px;
     background-color:white;
     border-radius: 0px 0px 15px 15px;
+}
+
+.ended-repairs-container{
+    position: relative;
+    padding:20px 25px 20px 25px !important; 
+    margin-bottom:20px;
+    background-color:white;
+    border-radius: 15px;
 }
 
 .links-container{

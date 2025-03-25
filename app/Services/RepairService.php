@@ -28,7 +28,7 @@ class RepairService{
         $endedRepairs = Repair::with(['device', 'device.client', 'status'])
         ->whereYear('date_received', $currentYear)
         ->whereMonth('date_received', $currentMonth)
-        ->where('status', '=', 4)
+        ->where('status_id', '=', 4)
         ->get();
 
         return $endedRepairs;
