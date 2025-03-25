@@ -4,10 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\DevicesController;
 use App\Http\Controllers\RepairsController;
+use App\Http\Controllers\DashboardsController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', [DashboardsController::class, 'showDashboard'])->name('dashboard');
 
 Route::get('/clients/search', [ClientsController::class, 'search'])->name('clients.search');
 

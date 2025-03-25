@@ -20,7 +20,7 @@ class DevicesController extends Controller
 
     public function client()
     {
-        return $this->belongsTo(Client::class, 'owner', 'id');
+        return $this->belongsTo(Client::class, 'client_id', 'id');
     }
 
     public function showCreateOrUpdateForm($id = null)
@@ -37,11 +37,11 @@ class DevicesController extends Controller
     
     public function store(Request $request)
     {
-        $request->merge(['owner' => $request->input('owner_id')]);
+        $request->merge(['client_id' => $request->input('owner_id')]);
 
         $validatedData = $request->validate([
             'owner_id' => 'required|integer',
-            'owner' => 'required|integer',
+            'client_id' => 'required|integer',
             'category' => 'required|string|max:30',
             'manufacturer' => 'required|string|max:30',
             'serialNumber' => 'nullable|string|max:30',
@@ -68,7 +68,7 @@ class DevicesController extends Controller
     {   
 
         if ($id) {
-            $repairs = Repair::where('device', $id)->paginate(10);
+            $repairs = Repair::where('device_id', $id)->paginate(10);
             $device = Device::with('client')->findOrFail($id); 
         }
 

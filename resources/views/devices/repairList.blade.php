@@ -48,7 +48,7 @@
                             <td>{{ $item->date_released }}</td>
                             <td>{{ $item->title }}</td>
                             <td>{{ $item->revenue }}</td>
-                            <td><a href="{{ '/repairs/'. $item->device . '/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
+                            <td><a href="{{ '/repairs/'. $item->device_id . '/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                         </tr>
                     @endforeach
                 </tbody>

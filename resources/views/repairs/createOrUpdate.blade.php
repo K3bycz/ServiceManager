@@ -38,7 +38,7 @@
                 <label for="number">Numer naprawy</label>
                 <input type="text" class="form-control form-input" name="number" id="number" value="@if(isset($repair->id)){{ $repair->id }}@endif" disabled>
             </div>
-            <input type="hidden" name="device" id="device" value ="{{ $device->id }}">
+            <input type="hidden" name="device_id" id="device_id" value ="{{ $device->id }}">
             <input type="hidden" name="id" id="id" value ="@if(isset($repair->id)){{ $repair->id }}@endif">
             <div class="col-6 col-md-3 form-group">
                 <label for="status">Status naprawy</label>

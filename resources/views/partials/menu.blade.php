@@ -27,7 +27,7 @@
 
     <h6> Pulpity </h6>
     <li class="p-2 pink-hover">
-        <a href="#" class="align-items-center text-decoration-none menu-option">
+        <a href="/" class="align-items-center text-decoration-none menu-option">
             <span class="ms-2"><i class="fa fa-home" aria-hidden="true"></i></span> Pulpit
         </a>
     </li>

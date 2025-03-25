@@ -19,9 +19,9 @@
         <form class="row" method="POST" action="{{ route('devices.store') }}">
             @csrf
             <div class="form-group col-12 position-relative">
-                <label for="owner">Klient<span style="color:red; padding:0px;">*</span></label>
-                <input type="text" class="form-control" name="owner" id="owner" value="@if(isset($device->client)){{ $device->client->name }} {{ $device->client->surname }} ({{ $device->client->phoneNumber }})@else{{ '' }}@endif" autocomplete="off">
-                <input type="hidden" name="owner_id" id="owner_id" value ="{{ $device->owner ?? '' }}">
+                <label for="client_id">Klient<span style="color:red; padding:0px;">*</span></label>
+                <input type="text" class="form-control" name="client_id" id="client_id" value="@if(isset($device->client)){{ $device->client->name }} {{ $device->client->surname }} ({{ $device->client->phoneNumber }})@else{{ '' }}@endif" autocomplete="off">
+                <input type="hidden" name="owner_id" id="owner_id" value ="{{ $device->client_id ?? '' }}">
                 @if (isset($device->id))
                     <input type="hidden" name="id" value="{{ $device->id }}">
                 @endif
@@ -74,7 +74,7 @@
 @section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const ownerInput = document.getElementById('owner');
+        const ownerInput = document.getElementById('client_id');
         const ownerIdInput = document.getElementById('owner_id');
         const suggestionsBox = document.getElementById('owner-suggestions');
 

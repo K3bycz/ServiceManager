@@ -79,7 +79,7 @@
                                     <td>{{ $item->date_released}}</td>
                                     <td>{{ $item->title}}</td>
                                     <td>@if(isset($item->revenue)) {{ $item->revenue}} PLN @endif</td>
-                                    <td class="editButtonRow"><a href="{{ '/repairs/'. $item->device . '/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
+                                    <td class="editButtonRow"><a href="{{ '/repairs/'. $item->device_id . '/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                                 @endif
                             </tr>
                         @endforeach

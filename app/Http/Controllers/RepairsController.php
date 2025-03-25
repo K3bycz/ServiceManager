@@ -22,7 +22,7 @@ class RepairsController extends Controller
     {
         $repair = null;
         $device = Device::findOrFail($deviceId);
-        $client = Client::where('id', $device->owner)->first();
+        $client = Client::where('id', $device->client_id)->first();
         $title = "Dane Naprawy";
 
         if ($id) {
@@ -35,7 +35,7 @@ class RepairsController extends Controller
     public function store(Request $request)
     {  
         $validatedData = $request->validate([
-            'device' => 'required|exists:devices,id',
+            'device_id' => 'required|exists:devices,id',
             'status' => 'required|string',
             'date_received' => 'nullable|date',
             'date_released' => 'nullable|date',
@@ -60,7 +60,7 @@ class RepairsController extends Controller
             return redirect()->route('repairs.list')->with('success', 'Naprawa została zapisana.');
         }
 
-        return redirect()->route('repairs.edit', ['deviceId' => $request->device, 'id' => $repair->id])
+        return redirect()->route('repairs.edit', ['deviceId' => $request->device_id, 'id' => $repair->id])
             ->with('success', 'Naprawa została zapisana.');
     }
 }

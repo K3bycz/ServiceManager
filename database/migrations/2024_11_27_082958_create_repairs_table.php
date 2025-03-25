@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('repairs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('device')
+            $table->foreignId('device_id')
                 ->constrained('devices')
                 ->onDelete('cascade');
 
