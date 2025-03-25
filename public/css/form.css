@@ -1,0 +1,70 @@
+.form-container {
+    position: relative;
+    padding:40px 25px 40px 25px; 
+    background-color:white;
+    border-radius: 15px;
+}
+.menu-form-container{
+    display: flex;
+    background-color:white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: solid 1px #ccc;
+    padding:20px 20px 0px 20px;
+    gap: 20px;
+}
+
+.info-form-container{
+    background-color:white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: solid 1px #ccc;
+    padding:20px 20px 0px 20px;
+}
+
+.form-input{
+    margin-bottom:25px !important;
+}
+
+.form-group {
+    position: relative;
+}
+
+#owner-suggestions {
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    border: 1px solid #ccc;
+    position:absolute;
+    border-bottom: none;
+    padding-left:0px;
+    margin-top: 2px;
+    left: 0;
+}
+
+#owner-suggestions li {
+    padding: 8px 12px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#owner-suggestions li:hover {
+    background-color: #f0f0f0;
+}
+
+@media only screen and (max-width: 767px) {
+    .form-container{
+        padding:10px 10px 10px 10px;
+    }
+    .info-form-container{
+        padding:10px 10px 0px 10px;
+    }
+    .menu-form-container{
+        padding:10px 10px 0px 10px;
+    }
+}
