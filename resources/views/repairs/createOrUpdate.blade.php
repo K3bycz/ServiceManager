@@ -42,13 +42,12 @@
             <input type="hidden" name="id" id="id" value ="@if(isset($repair->id)){{ $repair->id }}@endif">
             <div class="col-6 col-md-3 form-group">
                 <label for="status">Status naprawy</label>
-                <select id="status" name="status" class="form-control" required>
-                    <option value="Nowa" @if(isset($repair) && $repair->status == 'Nowa') selected @endif>Nowa</option>
-                    <option value="W trakcie realizacji" @if(isset($repair) && $repair->status == 'W trakcie realizacji') selected @endif>W trakcie realizacji</option>
-                    <option value="Gotowa do wydania" @if(isset($repair) && $repair->status == 'Gotowa do wydania') selected @endif>Gotowa do wydania</option>
-                    <option value="Zakończona" @if(isset($repair) && $repair->status == 'Zakończona') selected @endif>Zakończona</option>
-                    <option value="Oczekuje na części" @if(isset($repair) && $repair->status == 'Oczekuje na części') selected @endif>Oczekuje na części</option>
-                    <option value="Oczekuje na klienta" @if(isset($repair) && $repair->status == 'Oczekuje na klienta') selected @endif>Oczekuje na klienta</option>
+                <select id="status" name="status_id" class="form-control" required>
+                    @foreach($statuses as $status)
+                        <option value="{{ $status->id }}" @if(isset($repair) && $repair->status_id == $status->id) selected @endif>
+                            {{ $status->name }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-12 col-md-3 form-group">

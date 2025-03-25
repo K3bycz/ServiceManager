@@ -74,7 +74,7 @@
                                     <td class="editButtonRow"><a href="{{ '/device/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                                 @elseif($item instanceof App\Models\Repair)
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->status }}</td>
+                                    <td>{{ $item->status->name ?? 'Brak statusu' }}</td>
                                     <td>{{ $item->date_received }}</td>
                                     <td>{{ $item->date_released}}</td>
                                     <td>{{ $item->title}}</td>

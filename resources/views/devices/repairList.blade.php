@@ -43,7 +43,7 @@
                     @foreach ($repairs as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td>{{ $item->status }}</td>
+                            <td>{{ $item->status->name }}</td>
                             <td>{{ $item->date_received }}</td>
                             <td>{{ $item->date_released }}</td>
                             <td>{{ $item->title }}</td>

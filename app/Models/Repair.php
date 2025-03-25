@@ -9,11 +9,16 @@ class Repair extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['device_id', 'title', 'description', 'costs', 'revenue', 'profit', 'date_received', 'date_released', 'status' ];
+    protected $fillable = ['device_id', 'title', 'description', 'costs', 'revenue', 'profit', 'date_received', 'date_released', 'status_id' ];
 
     public function device()
     {
         return $this->belongsTo(Device::class, 'device_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(RepairStatus::class, 'status_id');
     }
 
     public function getAllRepairs()

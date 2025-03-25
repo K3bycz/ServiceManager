@@ -10,9 +10,13 @@
             <p style="font-size:25px; font-weight:bold; color:white">{{ $title }}</p>
         @endif
     </div>
+    <div class="links-container">
+        <a href="#">Pulpit</a>
+        <a href="#">Statystyka</a>
+    </div>
     @if(isset($repairs))
         <div class="repairs-container">
-            <table class="table table-bordered table-striped w-100 responsive-table" style="background-color:white">
+            <table class="table table-bordered table-striped w-100 responsive-table dashboard-repairs-table" style="background-color:white">
                 @if($repairs->isEmpty())
                     <p class="text-center">Brak danych do wyświetlenia</p>
                 @else
@@ -28,7 +32,6 @@
                         </tr>
                     </thead>    
                     <tbody>
-                        
                         @foreach ($repairs as $repair)
                             <tr>
                                 <td>
@@ -50,7 +53,7 @@
                                     {{ $repair->profit }}
                                 </td>
                                 <td>
-                                    {{ $repair->status }}
+                                    {{ $repair->status->name }}
                                 </td>
                             </tr>
                         @endforeach
