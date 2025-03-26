@@ -41,16 +41,13 @@
 
 @if(session('success'))
     <script>
-        // Tworzenie powiadomienia
         const notificationContainer = document.getElementById('notificationContainer');
         const notification = document.createElement('div');
         notification.className = 'notification';
         notification.innerText = '{{ session('success') }}';
 
-        // Dodanie powiadomienia do kontenera
         notificationContainer.appendChild(notification);
 
-        // Usunięcie powiadomienia po 3.5 sekundach
         setTimeout(() => {
             notification.remove();
         }, 3500);
@@ -104,6 +101,5 @@
             overlay.classList.remove("active");
         });
     });
-
 </script>
 @yield('scripts')
