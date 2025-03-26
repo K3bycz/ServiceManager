@@ -32,8 +32,8 @@ class DatabaseSeeder extends Seeder
         foreach ($clients as $client) {
             $devices[] = Device::create([
                 'client_id' => $client->id,
-                'category' => $faker->randomElement(['Laptop', 'Komputer Stacjonarny']),
-                'manufacturer' => $faker->randomElement(['Dell', 'HP', 'Acer', 'Asus', 'Lenovo', 'Samsung']),
+                'category' => $faker->randomElement(['Laptop', 'Komputer Stacjonarny', 'Drukarka', 'Tablet', 'Konsola do gier', 'Smartfon']),
+                'manufacturer' => $faker->randomElement(['Dell', 'HP', 'Acer', 'Asus', 'Lenovo', 'Samsung, Apple, Brother, Playstation']),
                 'model' => $faker->bothify('???##?###??'),
                 'serialNumber' => $faker->bothify('???######??'),
             ]);

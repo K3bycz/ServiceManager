@@ -46,14 +46,14 @@ main {
     margin-left: 0;
     margin-right: 0; 
 }
-
+  
 .menu {
-    height: 90vh;
+    height: 100vh;
     padding: 0;
     background-color: white;
     border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px; 
-    font-size:14px;
+    border-bottom-right-radius: 10px;
+    font-size: 14px;
 }
 
 .menu-option{

@@ -5,15 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="dashboard-title">
-        @if(isset($title))
-            <p style="font-size:25px; font-weight:bold; color:white">{{ $title }}</p>
-        @endif
-    </div>
-    <div class="links-container">
-        <a href="/" class="custom-link">Pulpit</a>
-        <a href="/stats" class="custom-link">Statystyka</a>
-    </div>
+        @include('partials.dashboardMenu')
 
         @if(isset($currentRepairs))
             <div class="current-repairs-container">
@@ -39,13 +31,13 @@
                                         {{ $loop->iteration }}
                                     </td>
                                     <td>
-                                        {{ $repair->device->client->name }} {{ $repair->device->client->surname }} ({{ $repair->device->client->phoneNumber }})
+                                        <a href="/client/{{ $repair->device->client->id }}/edit" class="black-link">{{ $repair->device->client->name }} {{ $repair->device->client->surname }} ({{ $repair->device->client->phoneNumber }})</a>
                                     </td>
                                     <td>
-                                        {{ $repair->device->category }} - {{ $repair->device->manufacturer }} ({{ $repair->device->model }})
+                                        <a href="/device/{{ $repair->device->id }}/edit" class="black-link">{{ $repair->device->category }} - {{ $repair->device->manufacturer }} ({{ $repair->device->model }})</a>
                                     </td>
                                     <td>
-                                        <b>{{ $repair->id }}</b> - {{ $repair->title }}
+                                        <a href="/repairs/{{ $repair->device->id }}/{{ $repair->id }}/edit" class="black-link"><b>{{ $repair->id }}</b> - {{ $repair->title }}</a>
                                     </td>
                                     <td>
                                         {{ $repair->date_received }}
@@ -70,6 +62,9 @@
                     @if($endedRepairs->isEmpty())
                         <p class="text-center">Brak danych do wyświetlenia</p>
                     @else
+                    <p class="text-center" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-weight:bold; color:#666; font-size:14px; margin-bottom:20px;">
+                        Zakończone naprawy - {{ $currentMonth }} 
+                    </p>
                         <thead>
                             <tr>
                                 <th>Nr</th>
@@ -80,17 +75,17 @@
                         </thead>    
                         <tbody>
                             @foreach ($endedRepairs as $repair)
-                                <tr @if($repair->profit <= 0 || $repair->profit == null) style="background-color:#e33b43" @endif>
+                                <tr>
                                     <td>
                                         {{ $loop->iteration }}
                                     </td>
                                     <td>
-                                        <b>{{ $repair->id }}</b> - {{ $repair->title }}
+                                        <a href="/repairs/{{ $repair->device->id }}/{{ $repair->id }}/edit" class="black-link"><b>{{ $repair->id }}</b> - {{ $repair->title }}</a>
                                     </td>
                                     <td>
                                         {{ $repair->date_received }}
                                     </td>
-                                    <td>
+                                    <td @if($repair->profit <= 0 || $repair->profit == null) style="color:#e33b43" @endif>
                                         {{ $repair->profit }} PLN
                                     </td>
                                 </tr>

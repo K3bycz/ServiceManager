@@ -4,6 +4,9 @@
     margin-bottom:20px;
     background-color:white;
     border-radius: 0px 0px 15px 15px;
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size:13px;
+
 }
 
 .ended-repairs-container{
@@ -12,6 +15,8 @@
     margin-bottom:20px;
     background-color:white;
     border-radius: 15px;
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size:14px;
 }
 
 .links-container{
@@ -22,7 +27,45 @@
     border-bottom: 1px solid #ccc;
 }
 
+.year-stats-container{
+    position: relative;
+    background-color:white !important;
+    border-radius: 15px 15px 15px 15px;
+    padding:10px 25px 10px 25px; 
+    border-bottom: 1px solid #ccc;
+}
+
+.monthly-stats-container{
+    position: relative;
+    background-color:white !important;
+    border-radius: 0px 0px 0px 15px;
+    padding:10px 25px 10px 25px; 
+    border-bottom: 1px solid #ccc;
+    margin-bottom:20px;
+}
+
+.new-customers-container{
+    position: relative;
+    background-color:white !important;
+    border-radius: 15px 15px 15px 15px;
+    padding:10px 25px 10px 25px; 
+    border-bottom: 1px solid #ccc;
+}
+
+.device-categories-container{
+    position: relative;
+    background-color:white !important;
+    border-radius: 0px 0px 15px 0px;
+    padding:10px 25px 10px 25px; 
+    border-bottom: 1px solid #ccc;
+    margin-bottom:20px;
+}
+
 .dashboard-repairs-table thead{
     border-color: transparent;
     border-bottom-color: black;
+}
+
+.black-link{
+    color:black;
 }
