@@ -121,6 +121,13 @@ a i {
     text-decoration: none;
 }
 
+.custom-link{
+    text-decoration: none;
+    color: #e7008a;
+    margin:10px;
+    font-weight:bold;
+}
+
 .btn-custom{
     color:white !important;
     background-color: #e7008a !important;

@@ -42,6 +42,24 @@ class DatabaseSeeder extends Seeder
         foreach ($devices as $device) {
             $costs = $faker->randomFloat(2, 100, 500);
             $revenue = $faker->randomFloat(2, 150, 1200);
+            $profit = $revenue - $costs;
+
+            Repair::create([
+                'device_id' => $device->id,
+                'title' => $faker->sentence(3),
+                'description' => $faker->sentence(6),
+                'costs' => $costs,
+                'revenue' => $revenue,
+                'profit' => $profit,
+                'status_id' => $faker->randomElement([1, 2, 3, 5, 6, 7]),
+                'date_received' => $faker->dateTimeBetween('-30 days', 'now'),
+                'date_released' => null,
+            ]);
+        }
+
+        foreach ($devices as $device) {
+            $costs = $faker->randomFloat(2, 100, 500);
+            $revenue = $faker->randomFloat(2, 150, 1200);
             $profit = $revenue - $costs; // Obliczenie profitu
 
             Repair::create([
@@ -51,9 +69,9 @@ class DatabaseSeeder extends Seeder
                 'costs' => $costs,
                 'revenue' => $revenue,
                 'profit' => $profit,
-                'status_id' => $faker->numberBetween(1, 7),
+                'status_id' => 4,
                 'date_received' => $faker->dateTimeBetween('-30 days', 'now'),
-                'date_released' => $faker->optional()->dateTimeBetween('-15 days', 'now'),
+                'date_released' => $faker->dateTimeBetween('-15 days', 'now'),
             ]);
         }
     }

@@ -19,9 +19,16 @@ class DashboardsController extends Controller
 
     public function showDashboard(){
         $title ='Pulpit';
-        $repairs = $this->repairService->getMonthlyRepairs();
+        $currentRepairs = $this->repairService->getMonthlyRepairs();
+        $endedRepairs = $this->repairService->getMonthlyEndedRepairs();
 
-        return view('dashboards.dashboard', ['title' => $title, 'repairs' => $repairs]);
+        return view('dashboards.dashboard', ['title' => $title, 'currentRepairs' => $currentRepairs, 'endedRepairs' => $endedRepairs]);
+    }
+
+    public function showStatistics(){
+        $title ='Statystyki';
+    
+        return view('dashboards.stats', ['title' => $title]);
     }
 
 }
