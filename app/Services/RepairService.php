@@ -10,17 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class RepairService{
     
-    public function getMonthlyRepairs(){
-        $currentMonth = Carbon::now()->month;
-        $currentYear = Carbon::now()->year;
-
-        $monthlyRepairs = Repair::with(['device', 'device.client', 'status'])
-        ->whereYear('date_received', $currentYear)
-        ->whereMonth('date_received', $currentMonth)
+    public function getRepairs(){
+        $repairs = Repair::with(['device', 'device.client', 'status'])
+        ->orderBy('id')
         ->where('status_id', '!=', 4)
         ->get();
 
-        return $monthlyRepairs;
+        return $repairs;
     }
 
     public function getMonthlyEndedRepairs(){

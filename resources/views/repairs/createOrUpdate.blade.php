@@ -87,5 +87,27 @@
             </div>
         </form>
     </div>
-
+    @if(isset($orders) && $orders != null)
+        <div class="orders-container">
+            <p>Zamówienia dotyczące naprawy</p>
+            <table class="table table-bordered table-striped w-100 responsive-table" style="background-color:white">
+                <thead>
+                    <tr>
+                        <th style="width: 70%">Tytuł zamówienia</th>
+                        <th>Status zamówienia</th>
+                        <th>Hurtownia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($orders as $order)
+                        <tr>
+                            <td><a href="order/{{ $order->id }}/edit" style="color:black">{{ $order->title }}</a></td>
+                            <td>{{ $order->status }}</td>
+                            <td>{{ $order->warehouse }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>  
+        </div>
+    @endif
 @endsection

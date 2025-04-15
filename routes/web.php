@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\DevicesController;
 use App\Http\Controllers\RepairsController;
 use App\Http\Controllers\DashboardsController;
+use App\Http\Controllers\OrdersController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +20,7 @@ Route::get('/clients/search', [ClientsController::class, 'search'])->name('clien
 Route::get('/list/clients', [ClientsController::class, 'showList'])->name('clients.list');
 Route::get('/list/devices', [DevicesController::class, 'showList'])->name('devices.list');
 Route::get('/list/repairs', [RepairsController::class, 'showList'])->name('repairs.list');
+Route::get('/list/orders', [OrdersController::class, 'showList'])->name('orders.list');
 
 Route::get('client/create', [ClientsController::class, 'showCreateOrUpdateForm'])->name('clients.create');
 Route::get('client/{id}/edit', [ClientsController::class, 'showCreateOrUpdateForm'])->name('clients.edit');
@@ -32,3 +34,7 @@ Route::get('device/{id}/repairs', [DevicesController::class, 'showRepairs'])->na
 Route::get('repairs/{deviceId}/create', [RepairsController::class, 'showCreateOrUpdateForm'])->name('repairs.create');
 Route::get('repairs/{deviceId}/{id}/edit', [RepairsController::class, 'showCreateOrUpdateForm'])->name('repairs.edit');
 Route::post('/repairs/store', [RepairsController::class, 'store'])->name('repairs.store');
+
+Route::get('order/create', [OrdersController::class, 'showCreateOrUpdateForm'])->name('orders.create');
+Route::get('order/{id}/edit', [OrdersController::class, 'showCreateOrUpdateForm'])->name('orders.edit');
+Route::post('/order/store', [OrdersController::class, 'store'])->name('orders.store');

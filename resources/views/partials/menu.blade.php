@@ -31,7 +31,7 @@
             <span class="ms-2"><i class="fa fa-home" aria-hidden="true"></i></span> Pulpit
         </a>
     </li>
-    <h6> Listy </h6>
+    <h6> Serwis </h6>
     <li class="p-2 pink-hover">
         <a href="/list/clients" class="align-items-center text-decoration-none menu-option">
             <span class="ms-2"><i class="fa fa-id-card" aria-hidden="true"></i></span> Klienci
@@ -45,6 +45,11 @@
     <li class="p-2 pink-hover">
         <a href="/list/repairs" class="align-items-center text-decoration-none menu-option">
             <span class="ms-2"><i class="fa fa-gavel" aria-hidden="true"></i></span> Naprawy
+        </a>
+    </li>
+    <li class="p-2 pink-hover">
+        <a href="/list/orders" class="align-items-center text-decoration-none menu-option">
+            <span class="ms-2"><i class="fa-solid fa-cart-shopping"></i></span> Zamówienia
         </a>
     </li>
 </ul>
