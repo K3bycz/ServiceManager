@@ -10,6 +10,9 @@
         @if(isset($currentRepairs))
             <div class="current-repairs-container">
                 <table class="table table-bordered table-striped w-100 responsive-table dashboard-repairs-table" style="background-color:white; margin-bottom:0px;">
+                    <p class="text-center" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-weight:bold; color:#666; font-size:14px; margin-bottom:20px;">
+                        Obecne naprawy - {{ $currentMonth }} 
+                    </p>
                     @if($currentRepairs->isEmpty())
                         <p class="text-center">Brak danych do wyświetlenia</p>
                     @else
@@ -46,7 +49,7 @@
                                         {{ $repair->profit }} PLN
                                     </td>
                                     <td>
-                                        <p style="font-weight:bold; border-radius:10px; padding:5px; margin:0px; background-color:{{ $repair->status->background_color }}; color:{{ $repair->status->text_color }}">{{ $repair->status->name }}</p>
+                                        <p style="font-weight:bold; border-radius:10px; padding:3px; margin:0px; background-color:{{ $repair->status->background_color }}; color:{{ $repair->status->text_color }}">{{ $repair->status->name }}</p>
                                     </td>
                                 </tr>
                             @endforeach
@@ -57,14 +60,14 @@
         @endif
         
         @if(isset($endedRepairs))
-            <div class="ended-repairs-container col-6 m-0">
+            <div class="ended-repairs-container col-12 col-md-6 m-0">
                 <table class="table table-bordered table-striped w-100 responsive-table dashboard-repairs-table" style="background-color:white; margin-bottom:0px;">
-                    @if($endedRepairs->isEmpty())
-                        <p class="text-center">Brak danych do wyświetlenia</p>
-                    @else
                     <p class="text-center" style="font-family:'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; font-weight:bold; color:#666; font-size:14px; margin-bottom:20px;">
                         Zakończone naprawy - {{ $currentMonth }} 
                     </p>
+                    @if($endedRepairs->isEmpty())
+                        <p class="text-center">Brak danych do wyświetlenia</p>
+                    @else
                         <thead>
                             <tr>
                                 <th>Nr</th>

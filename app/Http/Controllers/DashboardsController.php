@@ -24,7 +24,8 @@ class DashboardsController extends Controller
 
         Carbon::setLocale('pl');
         $currentMonth = Carbon::now()->translatedFormat('F');
-
+        $currentMonth = mb_convert_case(Carbon::now()->translatedFormat('F'), MB_CASE_TITLE, 'UTF-8');
+        
         $currentRepairs = $this->repairService->getMonthlyRepairs();
         $endedRepairs = $this->repairService->getMonthlyEndedRepairs();
 
@@ -49,6 +50,23 @@ class DashboardsController extends Controller
             'deviceCategories' => $deviceStats['deviceCategories'],
             'deviceCounts' => $deviceStats['deviceCounts'],
             'newCustomers' => $customerStats['newCustomers'],
+        ]);    
+    }
+
+    public function showBookkeeping(){
+        $title ='Ksiegowość';
+        $monthlyEarningsData = $this->getMonthlyEarningsData();
+        $yearlyEarningsData  = $this->getYearlyEarningsData();
+
+        return view('dashboards.bookkeeping', [
+            'title' => $title,
+            'summaryStats' => $monthlyEarningsData['summaryStats'],
+            'dailyProfits' => $monthlyEarningsData['dailyProfits'],
+            'currentMonth' => $monthlyEarningsData['currentMonth'],
+            'dailyLabels' => $monthlyEarningsData['dailyLabels'],
+            'monthNames' => $yearlyEarningsData['monthNames'],
+            'monthlyCosts' => $yearlyEarningsData['monthlyCosts'],
+            'monthlyRevenues' => $yearlyEarningsData['monthlyRevenues'],
         ]);    
     }
 
@@ -187,6 +205,108 @@ class DashboardsController extends Controller
         
         return [
             'newCustomers' => $customersData
+        ];
+    }
+
+    public function getMonthlyEarningsData()
+    {
+        $currentYear = now()->year;
+        $currentMonthNumber = now()->month;
+        $currentMonth = now()->format('Y-m');
+        
+        $daysInMonth = Carbon::createFromDate($currentYear, $currentMonthNumber)->daysInMonth;
+        
+        $dailyData = Repair::where('status_id', 4)
+            ->whereYear('date_released', $currentYear)
+            ->whereMonth('date_released', $currentMonthNumber)
+            ->select(
+                DB::raw('DATE(date_released) as day'),
+                DB::raw('SUM(profit) as total_profit')
+            )
+            ->groupBy('day')
+            ->orderBy('day')
+            ->get();
+        
+        $dailyDataByDay = [];
+        foreach ($dailyData as $data) {
+            $day = (int)date('d', strtotime($data->day));
+            $dailyDataByDay[$day] = $data;
+        }
+        
+        $dailyLabels = [];
+        $dailyProfits = [];
+        
+        for ($day = 1; $day <= $daysInMonth; $day++) {
+            $dailyLabels[] = $day;
+           
+            if (isset($dailyDataByDay[$day])) {
+                $dailyProfits[] = (float)$dailyDataByDay[$day]->total_profit;
+            } else {
+                $dailyProfits[] = null;
+            }
+        }
+        
+        $summaryStats = Repair::where('status_id', 4)
+            ->whereYear('date_released', $currentYear)
+            ->whereMonth('date_released', $currentMonthNumber)
+            ->select(
+                DB::raw('SUM(costs) as total_costs'),
+                DB::raw('SUM(revenue) as total_revenue'),
+                DB::raw('SUM(profit) as total_profit')
+            )
+            ->first();
+        $currentMonth = ucfirst(now()->locale('pl')->translatedFormat('F Y'));
+        return [
+            'dailyProfits' => $dailyProfits,
+            'summaryStats' => $summaryStats,
+            'currentMonth' => $currentMonth,
+            'dailyLabels' => $dailyLabels,
+        ];
+    }
+
+    public function getYearlyEarningsData(){
+        $currentYear = now()->year;
+        $monthlyRevenues = [];
+        $monthlyCosts = [];
+        
+        $monthNames = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $date = Carbon::create($currentYear , $i, 1);
+            $monthName = ucfirst($date->locale('pl')->translatedFormat('F'));
+            $monthNames[] = $monthName;
+        }
+        
+        $monthlyData = Repair::where('status_id', 4)
+            ->whereYear('date_released', $currentYear)
+            ->select(
+                DB::raw('EXTRACT(MONTH FROM date_released) as month'),
+                DB::raw('SUM(revenue) as total_revenue'),
+                DB::raw('SUM(costs) as total_costs'),
+                DB::raw('SUM(profit) as total_profit')
+            )
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+        
+        $monthlyDataByMonth = [];
+        foreach ($monthlyData as $data) {
+            $monthlyDataByMonth[(int)$data->month] = $data;
+        }
+        
+        for ($month = 1; $month <= 12; $month++) {
+            if (isset($monthlyDataByMonth[$month])) {
+                $monthlyCosts[] = (float)$monthlyDataByMonth[$month]->total_costs;
+                $monthlyRevenues[] = (float)$monthlyDataByMonth[$month]->total_revenue;
+            } else {
+                $monthlyCosts[] = 0;
+                $monthlyRevenues[] = 0;
+            }
+        }
+        
+        return [
+            'monthNames' => $monthNames,
+            'monthlyCosts' => $monthlyCosts,
+            'monthlyRevenues' => $monthlyRevenues,
         ];
     }
 }

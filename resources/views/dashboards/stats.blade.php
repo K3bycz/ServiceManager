@@ -15,14 +15,14 @@
                 <canvas id="deviceCategoriesChart" height="140"></canvas>
             </div>
         </div>
-        <div class="row justify-content-between">
-            <div class="col-12 col-md-6 p-0" style="padding-right:10px !important">
-                <div class="year-stats-container">
+        <div class="row" style="height: fit-content">
+            <div class="col-12 col-md-6 responsive-container" style="padding-left:0px;">
+                <div class="chart-container">
                     <canvas id="yearStatsChart" height="150"></canvas>
                 </div>
             </div>
-            <div class="col-12 col-md-6 p-0" style="padding-left:10px !important">
-                <div class="new-customers-container">
+            <div class="col-12 col-md-6 responsive-container" style="padding-right:0px;">
+                <div class="chart-container">
                     <canvas id="customersChart" height="150"></canvas>
                 </div>
             </div>

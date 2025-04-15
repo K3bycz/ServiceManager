@@ -6,4 +6,5 @@
 <div class="links-container">
     <a href="/" class="custom-link">Pulpit</a>
     <a href="/stats" class="custom-link">Statystyka</a>
+    <a href="/bookkeeping" class="custom-link">Księgowość</a>
 </div>
