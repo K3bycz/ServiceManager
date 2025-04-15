@@ -6,10 +6,16 @@ use App\Models\Repair;
 use App\Models\Device;
 use App\Models\Client;
 use App\Models\RepairStatus;
+use App\Services\OrderService;
 use Illuminate\Http\Request;
 
 class RepairsController extends Controller
 {
+    public function __construct(OrderService $orderService)
+    {
+        $this->orderService = $orderService;
+    }
+
     public function showList()
     {
         $data = Repair::with('status')->orderBy('id', 'asc')->paginate(15);
@@ -22,16 +28,18 @@ class RepairsController extends Controller
     public function showCreateOrUpdateForm($deviceId, $id = null)
     {
         $repair = null;
+        $orders = null;
         $device = Device::findOrFail($deviceId);
         $client = Client::where('id', $device->client_id)->first();
         $statuses = RepairStatus::all();
         $title = "Dane Naprawy";
 
         if ($id) {
-            $repair = Repair::findOrFail($id);   
+            $repair = Repair::findOrFail($id);
+            $orders = $this->orderService->getOrderForRepair($id);
         }
         
-        return view('repairs.createOrUpdate', ['repair' => $repair, 'device' => $device, 'client' => $client, 'title' => $title, 'statuses' => $statuses]);
+        return view('repairs.createOrUpdate', ['repair' => $repair, 'device' => $device, 'client' => $client, 'title' => $title, 'statuses' => $statuses, 'orders' => $orders]);
     }
 
     public function store(Request $request)

@@ -20,6 +20,8 @@
                         <a href="/device/create" class="btn btn-custom">Dodaj nowy</a>
                     @elseif($type == "repair")
                         <button id="notificationButton" class="btn btn-custom">Dodaj nowy</button>
+                    @elseif($type == "order")
+                        <a href="/order/create" class="btn btn-custom">Dodaj nowy</a>
                     @endif
                 </div>
                 @if(isset($data) && method_exists($data, 'links'))
@@ -54,6 +56,11 @@
                                 <th>Tytuł naprawy</th>
                                 <th>Przychód</th>
                                 <th class="actions-column">Akcje</th>
+                            @elseif($data[0] instanceof App\Models\Order)
+                                <th style="width: 70%">Tytuł zamówienia</th>
+                                <th>Status zamówienia</th>
+                                <th>Hurtownia</th>
+                                <th class="actions-column">Akcje</th>
                             @endif
                         </tr>
                     </thead>
@@ -80,6 +87,11 @@
                                     <td>{{ $item->title}}</td>
                                     <td>@if(isset($item->revenue)) {{ $item->revenue}} PLN @endif</td>
                                     <td class="editButtonRow"><a href="{{ '/repairs/'. $item->device_id . '/' . $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
+                                @elseif($data[0] instanceof App\Models\Order)
+                                    <td>{{ $item->title }} @if(isset($item->repair_id) && $item->repair_id != null) | Naprawa: {{  $item->repair_id }}@endif</td>
+                                    <td>{{ $item->status}}</td>
+                                    <td>{{ $item->warehouse }}</td>
+                                    <td class="editButtonRow"><a href="{{ '/order/'. $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                                 @endif
                             </tr>
                         @endforeach
