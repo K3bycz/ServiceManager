@@ -32,6 +32,9 @@
         </div>
     </div>
     <div class="form-container" style="border-radius: 0 0 10px 10px;">
+        @if (isset($repair) && $repair && $repair->status_id == 4 && empty($repair->date_released))
+            <p style="color:red; margin-left:15px; margin-bottom:30px; font-weight:bold; font-size:18px;">Brak daty wydania!</p>
+        @endif
         <form class="row" method="POST" action="{{ route('repairs.store') }}">
             @csrf
             <div class="col-6 col-md-3 form-group">
