@@ -57,6 +57,14 @@
     background-color: #f0f0f0;
 }
 
+.orders-container{
+    position: relative;
+    padding:20px 25px 20px 25px !important; 
+    margin-top:20px;
+    background-color:white;
+    border-radius: 15px;
+}
+
 @media only screen and (max-width: 767px) {
     .form-container{
         padding:10px 10px 10px 10px;
