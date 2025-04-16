@@ -52,12 +52,12 @@ This system is under continuous development. Planned features include:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/K3bycz/ServiceManager.git
 
 # Build and start the containers
-docker-compose up -d
+docker compose up -d
 
 # Run Laravel setup
-docker exec -it your-app-container-name bash
+docker exec -it container-name bash
 composer install
 php artisan migrate --seed
