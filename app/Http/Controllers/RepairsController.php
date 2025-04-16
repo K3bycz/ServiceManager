@@ -16,9 +16,36 @@ class RepairsController extends Controller
         $this->orderService = $orderService;
     }
 
-    public function showList()
+    public function showList(Request $request)
     {
-        $data = Repair::with('status')->orderBy('id', 'asc')->paginate(15);
+        $query = Repair::query()->with(['device.client', 'status']);
+    
+        if ($request->has('search') && $request->search) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('title', 'ILIKE', "%{$searchTerm}%")
+                ->orWhere('id', 'ILIKE', "%{$searchTerm}%")
+                ->orWhere('date_received', 'ILIKE', "%{$searchTerm}%")
+                ->orWhere('date_released', 'ILIKE', "%{$searchTerm}%")
+                ->orWhere('revenue', 'ILIKE', "%{$searchTerm}%")
+                ->orWhereHas('status', function($subQuery) use ($searchTerm) {
+                    $subQuery->where('name', 'ILIKE', "%{$searchTerm}%");
+                })
+                ->orWhereHas('device', function($deviceQuery) use ($searchTerm) {
+                    $deviceQuery->where('manufacturer', 'ILIKE', "%{$searchTerm}%")
+                                ->orWhere('model', 'ILIKE', "%{$searchTerm}%")
+                                ->orWhereHas('client', function($clientQuery) use ($searchTerm) {
+                                    $clientQuery->where('name', 'ILIKE', "%{$searchTerm}%")
+                                                ->orWhere('surname', 'ILIKE', "%{$searchTerm}%")
+                                                ->orWhere('phoneNumber', 'ILIKE', "%{$searchTerm}%");
+                                });
+                });
+            });
+        }
+    
+        $query->orderBy('id', 'desc');
+        $data= $query->paginate(15);
+
         $title = "Naprawy";
         $type = "repair";
 

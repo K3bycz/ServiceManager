@@ -7,8 +7,22 @@ use Illuminate\Http\Request;
 
 class OrdersController extends Controller
 {
-    public function showList(){
-        $data = Order::orderBy('id', 'desc')->paginate(15);
+    public function showList(Request $request)
+    {
+        $query = Order::query();
+
+        if ($request->has('search') && $request->search) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('title', 'ILIKE', "%{$searchTerm}%")
+                  ->orWhere('status', 'ILIKE', "%{$searchTerm}%")
+                  ->orWhere('warehouse', 'ILIKE', "%{$searchTerm}%")
+                  ->orWhere('repair_id', 'ILIKE', "%{$searchTerm}%");
+            });
+        }
+        
+        $query->orderBy('id', 'desc');
+        $data = $query->paginate(15);
 
         $title = "Zamówienia";
         $type = "order";
