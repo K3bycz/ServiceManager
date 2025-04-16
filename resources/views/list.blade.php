@@ -24,11 +24,19 @@
                         <a href="/order/create" class="btn btn-custom">Dodaj nowy</a>
                     @endif
                 </div>
-                @if(isset($data) && method_exists($data, 'links'))
-                    <div class="pagination-container">
-                        {{ $data->links('vendor.pagination.bootstrap-5') }}                    
+                <div class="search-container mb-3">
+                    <div class="search-wrapper position-relative">
+                        <div class="search-input-group">
+                            <button id="searchButton" class="search-icon">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                            <input type="text" id="searchInput" class="search-input" placeholder="Wyszukaj">
+                        </div>
+                        <a href="{{ request()->url() }}" class="search-clear-button">
+                            <i class="fa-solid fa-x"></i>
+                        </a>
                     </div>
-                @endif
+                </div>
             </div>
             <table class="table table-bordered table-striped w-100 responsive-table" style="background-color:white">
                 @if($data->isEmpty())
@@ -98,6 +106,11 @@
                     </tbody>
                 @endif
             </table>
+            @if(isset($data) && method_exists($data, 'links'))
+                <div class="pagination-container d-flex justify-content-end" style="margin-top: 30px;">
+                    {{ $data->links('vendor.pagination.bootstrap-5') }}                    
+                </div>
+            @endif
         </div>
   
 @endsection
@@ -116,6 +129,33 @@
             setTimeout(() => {
                 notification.remove();
             }, 3500);
+        });
+        </script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+            
+            // Funkcja wyszukiwania
+            function performSearch() {
+                const searchValue = searchInput.value.trim();
+                if (searchValue) {
+                    // Zachowaj obecne parametry URL i dodaj/aktualizuj parametr search
+                    const currentUrl = new URL(window.location.href);
+                    currentUrl.searchParams.set('search', searchValue);
+                    window.location.href = currentUrl.toString();
+                }
+            }
+            
+            // Obsługa przycisku wyszukiwania
+            searchButton.addEventListener('click', performSearch);
+            
+            // Obsługa wciśnięcia Enter w polu wyszukiwania
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
         });
     </script>
 @endsection

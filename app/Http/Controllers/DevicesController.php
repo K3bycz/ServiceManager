@@ -9,14 +9,34 @@ use Illuminate\Http\Request;
 
 class DevicesController extends Controller
 {
-    public function showList()
+    public function showList(Request $request)
     {
-        $data = Device::with('client')->paginate(15);
+        $query = Device::query()->with('client');
+
+        if ($request->has('search') && $request->search) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('manufacturer', 'ILIKE', "%{$searchTerm}%")
+                  ->orWhere('model', 'ILIKE', "%{$searchTerm}%")
+                  ->orWhere('category', 'ILIKE', "%{$searchTerm}%")
+                  ->orWhere('serialNumber', 'ILIKE', "%{$searchTerm}%")
+                  ->orWhereHas('client', function($subQuery) use ($searchTerm) {
+                      $subQuery->where('name', 'ILIKE', "%{$searchTerm}%")
+                               ->orWhere('surname', 'ILIKE', "%{$searchTerm}%")
+                               ->orWhere('phoneNumber', 'ILIKE', "%{$searchTerm}%");
+                  });
+            });
+        }
+        
+        $query->orderBy('id', 'desc');
+        $data = $query->paginate(15);
+
         $title = "Urządzenia";
         $type = "device";
 
         return view('list', ['data' => $data, 'title' => $title, 'type' => $type]);
     }
+    
 
     public function client()
     {
