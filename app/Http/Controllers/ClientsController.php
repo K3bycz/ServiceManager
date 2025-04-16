@@ -7,9 +7,22 @@ use Illuminate\Http\Request;
 
 class ClientsController extends Controller
 {
-    public function showList()
+    public function showList(Request $request)
     {
-        $data = Client::orderBy('id', 'desc')->paginate(15);
+        $query = Client::query();
+
+        if ($request->has('search') && $request->search) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('name', 'ilike', "%{$searchTerm}%")
+                  ->orWhere('surname', 'ilike', "%{$searchTerm}%")
+                  ->orWhere('phoneNumber', 'ilike', "%{$searchTerm}%");
+            });
+        }
+        
+        $query->orderBy('id', 'desc');
+        $data = $query->paginate(15);
+
         $title = "Klienci";
         $type = "client";
         
