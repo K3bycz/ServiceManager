@@ -19,11 +19,15 @@ It helps computer repair businesses manage clients, devices, repairs, part order
 - 🛒 **Part Orders**  
   Keep notes of ordered parts, their status, and prices.
 
+- 📅 **Calendar & Scheduling**
+  Manage events and service trips with a built-in calendar.
+
 - 📊 **Dashboard & Statistics**  
   Get insight into:
   - Number of repairs
   - Revenue and profit
   - Completed and pending jobs
+  - Upcoming events and service trips
 
 ## 🧰 Tech Stack
 

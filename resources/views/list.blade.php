@@ -14,14 +14,10 @@
         <div class="table-container">
             <div class="d-flex justify-content-between mb-3">
                 <div class="table-button">
-                    @if($type == "client")
-                        <a href="/client/create" class="btn btn-custom">Dodaj nowy</a>
-                    @elseif($type == "device")
-                        <a href="/device/create" class="btn btn-custom">Dodaj nowy</a>
-                    @elseif($type == "repair")
+                    @if($type != "repair")
+                        <a href="/{{ $type }}/create" class="btn btn-custom">Dodaj nowy</a>
+                    @else
                         <button id="notificationButton" class="btn btn-custom">Dodaj nowy</button>
-                    @elseif($type == "order")
-                        <a href="/order/create" class="btn btn-custom">Dodaj nowy</a>
                     @endif
                 </div>
                 <div class="search-container mb-3">
@@ -69,6 +65,15 @@
                                 <th>Status zamówienia</th>
                                 <th>Hurtownia</th>
                                 <th class="actions-column">Akcje</th>
+                            @elseif($data[0] instanceof App\Models\Trip)
+                                <th>Data wyjazdu</th>
+                                <th>Adres</th>
+                                <th>Opis czynności</th>
+                                <th class="actions-column">Akcje</th>
+                            @elseif($data[0] instanceof App\Models\Event)
+                                <th>Tytuł wydarzenia</th>
+                                <th>Data rozpoczęcia</th>
+                                <th class="actions-column">Akcje</th>
                             @endif
                         </tr>
                     </thead>
@@ -100,6 +105,15 @@
                                     <td>{{ $item->status}}</td>
                                     <td>{{ $item->warehouse }}</td>
                                     <td class="editButtonRow"><a href="{{ '/order/'. $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
+                                @elseif($data[0] instanceof App\Models\Trip)
+                                    <td>{{ $item->date }}</td>
+                                    <td>{{ $item->address }}</td>
+                                    <td>{{ $item->description }}</td>
+                                    <td class="editButtonRow"><a href="{{ '/trip/'. $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
+                                @elseif($data[0] instanceof App\Models\Event)
+                                    <td>{{ $item->title }}</td>
+                                    <td>{{ $item->start_date }}</td>
+                                    <td class="editButtonRow"><a href="{{ '/event/'. $item->id . '/edit' }}" class="no-style-link"><i class="fa fa-pencil icon-square"></i></a></td>
                                 @endif
                             </tr>
                         @endforeach

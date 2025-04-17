@@ -49,7 +49,18 @@
     </li>
     <li class="p-2 pink-hover">
         <a href="/list/orders" class="align-items-center text-decoration-none menu-option">
-            <span class="ms-2"><i class="fa-solid fa-cart-shopping"></i></span> Zamówienia
+            <span class="ms-2"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></span> Zamówienia
+        </a>
+    </li>
+    <h6> Kalendarz </h6>
+    <li class="p-2 pink-hover">
+        <a href="/list/trips" class="align-items-center text-decoration-none menu-option">
+            <span class="ms-2"><i class="fa-solid fa-suitcase" aria-hidden="true"></i></span> Wyjazdy
+        </a>
+    </li>
+    <li class="p-2 pink-hover">
+        <a href="/list/events" class="align-items-center text-decoration-none menu-option">
+            <span class="ms-2"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></span> Wydarzenia
         </a>
     </li>
 </ul>

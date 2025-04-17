@@ -62,6 +62,74 @@
     font-size:13px;
 }
 
+/* Style do kalendarza */
+
+#calendar {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.event-tooltip {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    position: absolute;
+    z-index: 10001;
+}
+
+.fc-button-primary {
+    background-color: white !important;
+    border-color: #e0e0e0 !important;
+    color: #666 !important;
+    box-shadow: none !important;
+  }
+
+.fc-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    vertical-align: middle !important;
+}
+
+.fc-button-primary:hover {
+    background-color: #f5f5f5 !important;
+}
+  
+.fc-daygrid-day-number {
+    color: #666 !important;
+    text-decoration: none !important;
+}
+  
+.fc-day-today {
+    background-color: rgba(0,0,0,0.03) !important;
+}
+  
+.fc-daygrid-day:hover {
+    background-color: transparent !important;
+}
+  
+.fc-col-header-cell a {
+    color: #666 !important;
+    text-decoration: none !important;
+}
+
+.fc-event {
+    padding: 4px 6px !important;
+}
+  
+.fc-event-title, 
+.fc-event-time,
+.fc-event-main {
+    color: #000 !important;
+    font-weight: bold !important
+}
+  
+.fc-daygrid-event {
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+}
+
 @media only screen and (max-width: 767px) {
     .table, 
     .table tbody, 
@@ -101,5 +169,36 @@
     .responsive-container{
         padding: 0px !important;
         margin-bottom:20px;
+    }
+
+    .fc-button-primary {
+        padding: 0.2em 0.4em !important;
+        font-size: 0.8rem !important;
+    }
+      
+    .fc-toolbar-chunk .fc-button-group {
+        margin-right: 0.2em !important;
+    }
+      
+    .fc-toolbar {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .fc-toolbar-chunk {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        margin-bottom: 0.5em !important;
+    }
+    
+    .fc-toolbar-title {
+        font-size: 1.2em !important;
+    }
+    
+    .fc-icon {
+        font-size: 1em !important;
     }
 }
