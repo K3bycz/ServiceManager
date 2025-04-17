@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Services\RepairService;
 use App\Services\OrderService;
+use App\Services\CalendarService;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 class DashboardsController extends Controller
 {
-    protected $repairService;
+    protected $repairService, $orderService, $calendarService;
 
-    public function __construct(RepairService $repairService, OrderService $orderService)
+    public function __construct(RepairService $repairService, OrderService $orderService, CalendarService $calendarService)
     {
         $this->repairService = $repairService;
         $this->orderService = $orderService;
+        $this->calendarService = $calendarService;
     }
 
     public function showDashboard(){
@@ -27,8 +29,17 @@ class DashboardsController extends Controller
         $currentRepairs = $this->repairService->getRepairs();
         $endedRepairs = $this->repairService->getMonthlyEndedRepairs();
         $unclaimedOrders = $this->orderService->getUnlcaimedOrders();
+        $calendarItems = $this->calendarService->getAllCalendarItems();
 
-        return view('dashboards.dashboard', ['title' => $title, 'currentRepairs' => $currentRepairs, 'endedRepairs' => $endedRepairs, 'currentMonth' => $currentMonth, 'orders' => $unclaimedOrders,]);
+        return view('dashboards.dashboard', 
+        [
+            'title' => $title, 
+            'currentRepairs' => $currentRepairs, 
+            'endedRepairs' => $endedRepairs, 
+            'currentMonth' => $currentMonth, 
+            'orders' => $unclaimedOrders, 
+            'calendarItems' => $calendarItems,
+        ]);
     }
 
     public function showStatistics(){
